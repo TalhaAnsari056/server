@@ -1,0 +1,26 @@
+{
+  "name": "first_express_server",
+  "version": "1.0.0",
+  "descriptionn": "my first express server",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "nodemon server.mjs",
+    "dev": "node --watch server.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TalhaAnsari056/server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TalhaAnsari056/server/issues"
+  },
+  "homepage": "https://github.com/TalhaAnsari056/server#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}

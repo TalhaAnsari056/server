@@ -1,23 +1,38 @@
 import express from 'express';
+import morgan from 'morgan';
 const app = express();
 const PORT = 3500;
+//application_level_middleware
+let middileware = (req, res, next) => {
+    console.log("middileware executed !");
+    next();
+}
+//router_level_middleware
+let post_middleware = (req,res,next) => {
+console.log('post middleware triggered !');
+next();
+}
+app.use(express.json());
+app.use(morgan('common'));
 
 app.get('/', (req, res) => {
     console.log('request IP' + req.ip)
-    res.send("Hello ! This is Express server!")
+    console.log('get request received');
+    res.send("Hello ! This is Express server!");
 })
-app.post('/', (req, res) => {
-    console.log("post request !");
+app.post('/',post_middleware, (req, res) => {
+    console.log("post request received !");
+    console.log(req.body);
     res.send('post Api');
 })
 
 app.put('/', (req, res) => {
-    console.log("put request !");
+    console.log("put request received!");
     res.send('put Api');
 })
 
 app.delete('/', (req, res) => {
-    console.log("delete request !");
+    console.log("delete request received !");
     res.send('delete Api');
 })
 
@@ -36,5 +51,5 @@ app.get('/users', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`my server is running on this port:${PORT}`)
+    console.log(`my server is running on this port http://localhost:${PORT}`);
 })

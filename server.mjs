@@ -1,7 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
+import userRoutes from './routes/users.js';
+import productRoutes from './routes/products.js';
 const app = express();
-const PORT = 3500;
+const PORT = process.env.PORT || 3500;
 //application_level_middleware
 let middileware = (req, res, next) => {
     console.log("middileware executed !");
@@ -14,6 +16,8 @@ next();
 }
 app.use(express.json());
 app.use(morgan('common'));
+app.use('/users',userRoutes);
+app.use('/products',productRoutes)
 
 app.get('/', (req, res) => {
     console.log('request IP' + req.ip)
@@ -36,19 +40,20 @@ app.delete('/', (req, res) => {
     res.send('delete Api');
 })
 
-app.get('/users', (req, res) => {
-    console.log("user route request !");
-    res.send([
-        {
-            name: 'abc',
-            age: 20,
-        },
-        {
-            name: 'xyz',
-            age: 30,
-        },
-    ]);
-})
+// app.get('/users', (req, res) => {
+//     console.log("user route request !");
+//     res.send([
+//         {
+//             name: 'abc',
+//             age: 20,
+//         },
+//         {
+//             name: 'xyz',
+//             age: 30,
+//         },
+//     ]);
+// })
+// run when /user route is not running !
 
 app.listen(PORT, () => {
     console.log(`my server is running on this port http://localhost:${PORT}`);

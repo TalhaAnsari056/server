@@ -2,6 +2,8 @@ import express from 'express';
 import morgan from 'morgan';
 import userRoutes from './routes/users.js';
 import productRoutes from './routes/products.js';
+import 'dotenv/config';
+console.log('process.env!',process.env);
 const app = express();
 const PORT = process.env.PORT || 3500;
 //application_level_middleware
